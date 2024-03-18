@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
+    "@types/node": "^20.11.28",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^3.2.4"
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "tsx": "^4.7.1"
   }
 }

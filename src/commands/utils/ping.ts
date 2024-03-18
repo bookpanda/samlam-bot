@@ -1,6 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
-export const ping = new SlashCommandBuilder()
+export const data = new SlashCommandBuilder()
   .setName("ping")
   .setDescription("replies pong");
 

@@ -1,6 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
-export const user = new SlashCommandBuilder()
+export const data = new SlashCommandBuilder()
   .setName("user")
   .setDescription("provides user info");
 

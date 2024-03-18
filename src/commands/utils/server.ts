@@ -1,6 +1,6 @@
 import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
-export const server = new SlashCommandBuilder()
+export const data = new SlashCommandBuilder()
   .setName("server")
   .setDescription("provides server info");
 

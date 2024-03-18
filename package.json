@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx src/index.ts"
+    "dev": "npx tsx src/index.ts",
+    "deploy-commands": "npx tsx src/deploy-commands.ts"
   },
   "keywords": [],
   "author": "",

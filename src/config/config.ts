@@ -1,7 +1,8 @@
 require("dotenv").config();
 
 export const config = {
-  clientId: process.env.BOT_CLIENT_ID ?? "",
-  guildId: process.env.BOT_GUILD_ID ?? "",
-  token: process.env.BOT_TOKEN ?? "",
+  BOT_CLIENT_ID: process.env.BOT_CLIENT_ID ?? "",
+  BOT_GUILD_ID: process.env.BOT_GUILD_ID ?? "",
+  BOT_TOKEN: process.env.BOT_TOKEN ?? "",
+  OPENAI_TOKEN: process.env.OPENAI_TOKEN ?? "",
 };

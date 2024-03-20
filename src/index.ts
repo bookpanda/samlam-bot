@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import { config } from "./config/config";
 
+const { BOT_TOKEN } = config;
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
@@ -41,4 +43,4 @@ for (const file of eventFiles) {
   }
 }
 
-client.login(config.token);
+client.login(BOT_TOKEN);

@@ -7,7 +7,11 @@ const { OPENAI_TOKEN } = config;
 
 const openai = new OpenAI({ apiKey: OPENAI_TOKEN });
 
-const generate = async (systemPrompt: string, userPrompt: string) => {
+const generate = async (
+  systemPrompt: string,
+  userPrompt: string,
+  model: string
+) => {
   const completion = await openai.chat.completions.create({
     messages: [
       {
@@ -16,16 +20,32 @@ const generate = async (systemPrompt: string, userPrompt: string) => {
       },
       { role: "user", content: userPrompt },
     ],
-    model: "gpt-3.5-turbo",
+    model: model,
   });
 
   return completion.choices[0].message.content ?? "";
 };
 
-export const askChatGPT = async (prompt: string) => {
-  const answer = await generate(infoPrompt, prompt);
+export const askChatGPT3_5 = async (prompt: string) => {
+  const answer = await generate(infoPrompt, prompt, "gpt-3.5-turbo");
 
-  const translatedAnswer = await generate(translatePrompt, answer);
+  const translatedAnswer = await generate(
+    translatePrompt,
+    answer,
+    "gpt-3.5-turbo	"
+  );
+
+  return translatedAnswer;
+};
+
+export const askChatGPT4 = async (prompt: string) => {
+  const answer = await generate(infoPrompt, prompt, "gpt-4-turbo-preview");
+
+  const translatedAnswer = await generate(
+    translatePrompt,
+    answer,
+    "gpt-4-turbo-preview"
+  );
 
   return translatedAnswer;
 };

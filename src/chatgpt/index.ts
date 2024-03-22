@@ -32,7 +32,7 @@ export const askChatGPT3_5 = async (prompt: string) => {
   const translatedAnswer = await generate(
     translatePrompt,
     answer,
-    "gpt-3.5-turbo	"
+    "gpt-3.5-turbo"
   );
 
   return translatedAnswer;

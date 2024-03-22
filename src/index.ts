@@ -1,6 +1,7 @@
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import fs from "fs";
 import path from "path";
+import { askChatGPT } from "./chatgpt";
 import { config } from "./config/config";
 
 const { BOT_TOKEN } = config;
@@ -44,3 +45,9 @@ for (const file of eventFiles) {
 }
 
 client.login(BOT_TOKEN);
+
+async function main() {
+  const res = await askChatGPT("hello");
+  console.log(res);
+}
+main();

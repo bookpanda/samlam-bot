@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { config } from "../config/config";
-import { characterPrompt } from "./prompts/character";
+import { infoPrompt } from "./prompts/info";
 import { translatePrompt } from "./prompts/translate";
 
 const { OPENAI_TOKEN } = config;
@@ -23,7 +23,7 @@ const generate = async (systemPrompt: string, userPrompt: string) => {
 };
 
 export const askChatGPT = async (prompt: string) => {
-  const answer = await generate(characterPrompt, prompt);
+  const answer = await generate(infoPrompt, prompt);
 
   const translatedAnswer = await generate(translatePrompt, answer);
 

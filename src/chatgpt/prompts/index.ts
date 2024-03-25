@@ -20,7 +20,8 @@ export interface TranslatePrompt {
 }
 
 const readJSONFile = <T>(filename: string): T => {
-  const filePath = path.join(__dirname, filename);
+  const currentDir = process.cwd();
+  const filePath = path.join(currentDir, "config", filename);
   const rawData = fs.readFileSync(filePath, "utf-8");
   const jsonData = JSON.parse(rawData);
   return jsonData;

@@ -1,5 +1,5 @@
 node_modules
 .env
-character.ts
-translate.ts
-info.ts
+system.json
+translate.json
+info.json

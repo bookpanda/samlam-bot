@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { askChatGPT4 } from "../../chatgpt";
-import { tellStory } from "../../chatgpt/prompts/tellStory";
+import { genStoryPrompt } from "../../chatgpt/prompts/process";
 
 export const data = new SlashCommandBuilder()
   .setName("story")
@@ -10,7 +10,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
   if (!interaction.guild) return;
 
   await interaction.deferReply();
-  const answer = await askChatGPT4(tellStory);
+  const answer = await askChatGPT4(genStoryPrompt());
 
   await interaction.editReply(answer);
 };

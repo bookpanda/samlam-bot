@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  discord-bot:
+    image: ghcr.io/bookpanda/samlam-bot
+    container_name: samlam-bot
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=
+      - BOT_CLIENT_ID=
+      - GUILD_ID=
+      - OPENAI_TOKEN=
+    volumes:
+      - /apps/samlam-bot/config:/app/config

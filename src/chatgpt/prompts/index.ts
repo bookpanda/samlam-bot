@@ -24,6 +24,7 @@ interface Config {
   story: StoryPrompt;
   system: SystemPrompt;
   translate: TranslatePrompt;
+  noContent: string;
 }
 
 const readJSONFile = <T>(filename: string): T => {
@@ -40,3 +41,4 @@ export const systemPrompt = config.system;
 export const translatePrompt = config.translate;
 export const infoPrompt = config.info;
 export const storyPrompt = config.story;
+export const noContentPrompt = config.noContent;

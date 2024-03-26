@@ -52,3 +52,13 @@ export const askChatGPT4 = async (prompt: string) => {
 
   return translatedAnswer;
 };
+
+export const translate = async (prompt: string) => {
+  const translatedAnswer = await generate(
+    genTranslatePrompt(),
+    prompt,
+    "gpt-3.5-turbo"
+  );
+
+  return translatedAnswer;
+};

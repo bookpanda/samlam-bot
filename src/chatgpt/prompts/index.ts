@@ -19,6 +19,13 @@ export interface TranslatePrompt {
   rules: string[];
 }
 
+interface Config {
+  info: InfoPrompt;
+  story: StoryPrompt;
+  system: SystemPrompt;
+  translate: TranslatePrompt;
+}
+
 const readJSONFile = <T>(filename: string): T => {
   const currentDir = process.cwd();
   const filePath = path.join(currentDir, "config", filename);
@@ -27,12 +34,9 @@ const readJSONFile = <T>(filename: string): T => {
   return jsonData;
 };
 
-export const systemPrompt: SystemPrompt =
-  readJSONFile<SystemPrompt>("system.json");
+const config: Config = readJSONFile<Config>("config.json");
 
-export const translatePrompt: TranslatePrompt =
-  readJSONFile<TranslatePrompt>("translate.json");
-
-export const infoPrompt: InfoPrompt = readJSONFile<InfoPrompt>("info.json");
-
-export const storyPrompt: StoryPrompt = readJSONFile<StoryPrompt>("story.json");
+export const systemPrompt = config.system;
+export const translatePrompt = config.translate;
+export const infoPrompt = config.info;
+export const storyPrompt = config.story;

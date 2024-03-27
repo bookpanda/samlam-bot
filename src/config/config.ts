@@ -5,4 +5,5 @@ export const config = {
   BOT_GUILD_ID: process.env.BOT_GUILD_ID ?? "",
   BOT_TOKEN: process.env.BOT_TOKEN ?? "",
   OPENAI_TOKEN: process.env.OPENAI_TOKEN ?? "",
+  NODE_ENV: process.env.NODE_ENV ?? "development",
 };

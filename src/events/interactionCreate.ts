@@ -1,8 +1,11 @@
 import { CacheType, Events, Interaction } from "discord.js";
+import { logger } from "../logger/logger";
 
 export const name = Events.InteractionCreate;
 
 export const execute = async (interaction: Interaction<CacheType>) => {
+  logger.info(`event: ${name}`);
+
   if (!interaction.isChatInputCommand()) return;
 
   const command = interaction.client.commands.get(interaction.commandName);

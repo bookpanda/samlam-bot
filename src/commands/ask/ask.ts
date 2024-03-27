@@ -1,5 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { askChatGPT3_5 } from "../../chatgpt";
+import { logger } from "../../logger/logger";
 
 export const data = new SlashCommandBuilder()
   .setName("ask")
@@ -12,6 +13,10 @@ export const data = new SlashCommandBuilder()
   );
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
+  logger.info(
+    `command: ${data.name}, question: ${interaction.options.getString("question")}`
+  );
+
   if (!interaction.guild) return;
 
   const question = interaction.options.getString("question") ?? "";

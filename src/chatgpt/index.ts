@@ -28,13 +28,14 @@ const generate = async (
 export const askChatGPT3_5 = async (prompt: string) => {
   const answer = await generate(genSystemPrompt(), prompt, "gpt-3.5-turbo");
 
-  const translatedAnswer = await generate(
-    genTranslatePrompt(),
-    answer,
-    "gpt-3.5-turbo"
-  );
+  // const translatedAnswer = await generate(
+  //   genTranslatePrompt(),
+  //   answer,
+  //   "gpt-3.5-turbo"
+  // );
 
-  return translatedAnswer;
+  // return translatedAnswer;
+  return answer;
 };
 
 export const askChatGPT4 = async (prompt: string) => {

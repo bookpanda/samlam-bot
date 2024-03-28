@@ -15,6 +15,7 @@ export const mentionHandler = async (message: Message) => {
   const rawContent = message.content;
   const regex = /<@&\d+>/g;
   const content = rawContent.replace(regex, "").trim();
+  logger.info(`mentionHandler actual content: ${content}`);
 
   if (content === "") {
     const reply = await translate(noContentPrompt);

@@ -13,7 +13,7 @@ export const mentionHandler = async (message: Message) => {
     return false;
 
   const rawContent = message.content;
-  const regex = /<@&\d+>/g;
+  const regex = /<@(.*?)>/g;
   const content = rawContent.replace(regex, "").trim();
   logger.info(`mentionHandler actual content: ${content}`);
 

@@ -1,54 +1,57 @@
 import OpenAI from "openai";
 import { config } from "../config/config";
-import { genSystemPrompt, genTranslatePrompt } from "./prompts/process";
+import { GPT35TURBO, GPT4TURBOPREVIEW } from "./models";
+import { genTranslatePrompt } from "./prompts/process";
 
 const { OPENAI_TOKEN } = config;
 
 const openai = new OpenAI({ apiKey: OPENAI_TOKEN });
 
 const generate = async (
-  systemPrompt: string,
+  model: string,
   userPrompt: string,
-  model: string
+  systemPrompt?: string
 ) => {
-  const completion = await openai.chat.completions.create({
-    messages: [
-      {
-        role: "system",
-        content: systemPrompt,
-      },
-      { role: "user", content: userPrompt },
-    ],
-    model: model,
-  });
+  let completion;
+  if (systemPrompt)
+    completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: systemPrompt,
+        },
+        { role: "user", content: userPrompt },
+      ],
+      model: model,
+    });
+  else
+    completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: userPrompt }],
+      model: model,
+    });
 
   return completion.choices[0].message.content ?? "";
 };
 
 export const askChatGPT3_5 = async (prompt: string) => {
-  const answer = await generate(genSystemPrompt(), prompt, "gpt-3.5-turbo");
+  const answer = await generate(GPT35TURBO, prompt);
 
-  // const translatedAnswer = await generate(
-  //   genTranslatePrompt(),
-  //   answer,
-  //   "gpt-3.5-turbo"
-  // );
+  const translatedAnswer = await generate(
+    GPT35TURBO,
+    answer,
+    genTranslatePrompt()
+  );
 
-  // return translatedAnswer;
-  return answer;
+  return translatedAnswer;
 };
 
 export const askChatGPT4 = async (prompt: string) => {
-  const answer = await generate(
-    genSystemPrompt(),
-    prompt,
-    "gpt-4-turbo-preview"
-  );
+  const answer = await generate(GPT4TURBOPREVIEW, prompt);
 
   const translatedAnswer = await generate(
-    genTranslatePrompt(),
+    GPT4TURBOPREVIEW,
     answer,
-    "gpt-4-turbo-preview"
+    genTranslatePrompt()
   );
 
   return translatedAnswer;
@@ -56,9 +59,9 @@ export const askChatGPT4 = async (prompt: string) => {
 
 export const translate = async (prompt: string) => {
   const translatedAnswer = await generate(
-    genTranslatePrompt(),
+    GPT35TURBO,
     prompt,
-    "gpt-3.5-turbo"
+    genTranslatePrompt()
   );
 
   return translatedAnswer;

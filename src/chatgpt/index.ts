@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { config } from "../config/config";
 import { GPT35TURBO, GPT4TURBOPREVIEW } from "./models";
-import { genTranslatePrompt } from "./prompts/process";
+import { genSystemPrompt, genTranslatePrompt } from "./prompts/process";
 
 const { OPENAI_TOKEN } = config;
 
@@ -34,7 +34,7 @@ const generate = async (
 };
 
 export const askChatGPT3_5 = async (prompt: string) => {
-  const answer = await generate(GPT35TURBO, prompt);
+  const answer = await generate(GPT35TURBO, prompt, genSystemPrompt());
 
   const translatedAnswer = await generate(
     GPT35TURBO,
@@ -46,7 +46,7 @@ export const askChatGPT3_5 = async (prompt: string) => {
 };
 
 export const askChatGPT4 = async (prompt: string) => {
-  const answer = await generate(GPT4TURBOPREVIEW, prompt);
+  const answer = await generate(GPT4TURBOPREVIEW, prompt, genSystemPrompt());
 
   const translatedAnswer = await generate(
     GPT4TURBOPREVIEW,

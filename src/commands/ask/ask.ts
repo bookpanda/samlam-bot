@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
-import { askChatGPT3_5 } from "../../chatgpt";
+import { askChatGPT4 } from "../../chatgpt";
 import { logger } from "../../logger/logger";
 
 export const data = new SlashCommandBuilder()
@@ -21,7 +21,7 @@ export const execute = async (interaction: ChatInputCommandInteraction) => {
 
   const question = interaction.options.getString("question") ?? "";
   await interaction.deferReply();
-  const answer = await askChatGPT3_5(question);
+  const answer = await askChatGPT4(question);
 
   await interaction.editReply(answer);
 };
